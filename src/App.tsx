@@ -3,7 +3,7 @@ import { Layout } from "./components/Layout";
 import { HomePage } from "./pages/HomePage";
 import { ChallengeViewer } from "./components/ChallengeViewer";
 import { Challenge } from "./types/Challenge";
-import { myChallenge } from "./data/sampleChallenges";
+import { myChallenge } from "./data/challenge";
 
 function App() {
   const [currentChallenge, setCurrentChallenge] = useState<Challenge | null>(
