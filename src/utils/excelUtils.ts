@@ -3,7 +3,7 @@ import { Challenge } from "../types/Challenge";
 
 export function loadExcelFromAssets(filename: string): Promise<any[][]> {
   return new Promise((resolve) => {
-    const assetPath = `/src/assets/challenges/${filename}`;
+    const assetPath = `/${filename}`;
 
     fetch(assetPath)
       .then((response) => {
