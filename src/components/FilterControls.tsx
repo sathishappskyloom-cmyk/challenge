@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Search, Filter, SortAsc, SortDesc } from "lucide-react";
+import { Search, Filter, SortAsc, SortDesc, Sliders } from "lucide-react";
 import { FilterState } from "../types/Challenge";
 
 interface FilterControlsProps {
@@ -49,91 +49,110 @@ export function FilterControls({
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-6 mb-8"
+      className="relative mb-10"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-        {/* Search */}
-        <div className="lg:col-span-2">
-          <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">
-            <Search className="w-4 h-4 inline mr-1" />
-            Search Challenges
-          </label>
-          <input
-            type="text"
-            value={filters.search}
-            onChange={handleSearchChange}
-            placeholder="Search by title..."
-            className="w-full px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-stone-700 text-stone-900 dark:text-stone-100"
-          />
+      {/* Background with blur effect */}
+      <div className="absolute inset-0 bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl rounded-2xl border border-slate-200/50 dark:border-slate-700/50"></div>
+      
+      <div className="relative p-8">
+        <div className="flex items-center space-x-2 mb-6">
+          <div className="p-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg">
+            <Sliders className="w-5 h-5 text-white" />
+          </div>
+          <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">
+            Filter & Sort
+          </h2>
         </div>
 
-        {/* Status Filter */}
-        <div>
-          <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">
-            <Filter className="w-4 h-4 inline mr-1" />
-            Status
-          </label>
-          <select
-            value={filters.status}
-            onChange={handleStatusChange}
-            className="w-full px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-stone-700 text-stone-900 dark:text-stone-100"
-          >
-            {statuses.map((status) => (
-              <option key={status} value={status}>
-                {status === "all"
-                  ? "All Statuses"
-                  : status.charAt(0).toUpperCase() + status.slice(1)}
-              </option>
-            ))}
-          </select>
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+          {/* Search */}
+          <div className="lg:col-span-2">
+            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">
+              <Search className="w-4 h-4 inline mr-2" />
+              Search Challenges
+            </label>
+            <div className="relative">
+              <input
+                type="text"
+                value={filters.search}
+                onChange={handleSearchChange}
+                placeholder="Search by title..."
+                className="w-full px-4 py-3 pl-11 border border-slate-300/50 dark:border-slate-600/50 rounded-xl focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 bg-white/80 dark:bg-slate-700/80 text-slate-900 dark:text-slate-100 placeholder-slate-400 transition-all duration-200 backdrop-blur-sm"
+              />
+              <Search className="absolute left-3.5 top-3.5 w-4 h-4 text-slate-400" />
+            </div>
+          </div>
 
-        {/* Category Filter */}
-        <div>
-          <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">
-            Category
-          </label>
-          <select
-            value={filters.category}
-            onChange={handleCategoryChange}
-            className="w-full px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-stone-700 text-stone-900 dark:text-stone-100"
-          >
-            <option value="all">All Categories</option>
-            {categories.map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Sort */}
-        <div>
-          <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">
-            Sort By
-          </label>
-          <div className="flex space-x-2">
+          {/* Status Filter */}
+          <div>
+            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">
+              <Filter className="w-4 h-4 inline mr-2" />
+              Status
+            </label>
             <select
-              value={filters.sortBy}
-              onChange={handleSortChange}
-              className="flex-1 px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-stone-700 text-stone-900 dark:text-stone-100"
+              value={filters.status}
+              onChange={handleStatusChange}
+              className="w-full px-4 py-3 border border-slate-300/50 dark:border-slate-600/50 rounded-xl focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 bg-white/80 dark:bg-slate-700/80 text-slate-900 dark:text-slate-100 transition-all duration-200 backdrop-blur-sm"
             >
-              {sortOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
+              {statuses.map((status) => (
+                <option key={status} value={status}>
+                  {status === "all"
+                    ? "All Statuses"
+                    : status.charAt(0).toUpperCase() + status.slice(1)}
                 </option>
               ))}
             </select>
-            <button
-              onClick={toggleSortOrder}
-              className="px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-lg hover:bg-stone-50 dark:hover:bg-stone-700 transition-colors duration-200 bg-white dark:bg-stone-700"
+          </div>
+
+          {/* Category Filter */}
+          <div>
+            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">
+              Category
+            </label>
+            <select
+              value={filters.category}
+              onChange={handleCategoryChange}
+              className="w-full px-4 py-3 border border-slate-300/50 dark:border-slate-600/50 rounded-xl focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 bg-white/80 dark:bg-slate-700/80 text-slate-900 dark:text-slate-100 transition-all duration-200 backdrop-blur-sm"
             >
-              {filters.sortOrder === "asc" ? (
-                <SortAsc className="w-4 h-4 text-stone-600 dark:text-stone-400" />
-              ) : (
-                <SortDesc className="w-4 h-4 text-stone-600 dark:text-stone-400" />
-              )}
-            </button>
+              <option value="all">All Categories</option>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Sort */}
+          <div>
+            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">
+              Sort By
+            </label>
+            <div className="flex space-x-2">
+              <select
+                value={filters.sortBy}
+                onChange={handleSortChange}
+                className="flex-1 px-4 py-3 border border-slate-300/50 dark:border-slate-600/50 rounded-xl focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 bg-white/80 dark:bg-slate-700/80 text-slate-900 dark:text-slate-100 transition-all duration-200 backdrop-blur-sm"
+              >
+                {sortOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={toggleSortOrder}
+                className="px-4 py-3 border border-slate-300/50 dark:border-slate-600/50 rounded-xl hover:bg-slate-50/80 dark:hover:bg-slate-600/80 transition-all duration-200 bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm"
+              >
+                {filters.sortOrder === "asc" ? (
+                  <SortAsc className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                ) : (
+                  <SortDesc className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                )}
+              </motion.button>
+            </div>
           </div>
         </div>
       </div>

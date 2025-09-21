@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BarChart3 } from "lucide-react";
+import { BarChart3, Grid3X3, List, Zap } from "lucide-react";
 import { ChallengeCard } from "../components/ChallengeCard";
 import { FilterControls } from "../components/FilterControls";
 import { StatisticsPanel } from "../components/StatisticsPanel";
@@ -13,6 +13,7 @@ interface HomePageProps {
 
 export function HomePage({ challenges, onViewChallenge }: HomePageProps) {
   const [showStats, setShowStats] = useState(true);
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [filters, setFilters] = useState<FilterState>({
     status: "all",
     category: "all",
@@ -104,27 +105,70 @@ export function HomePage({ challenges, onViewChallenge }: HomePageProps) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="space-y-6"
+      className="space-y-8"
     >
-      {/* Header Actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-stone-900 dark:text-stone-100">
-            My Challenges
-          </h1>
-          <p className="text-stone-600 dark:text-stone-400 mt-1">
-            Track your progress and achieve your goals
-          </p>
-        </div>
+      {/* Hero Header */}
+      <div className="relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl blur-3xl"></div>
+        <div className="relative bg-white/40 dark:bg-slate-800/40 backdrop-blur-xl rounded-3xl border border-slate-200/50 dark:border-slate-700/50 p-10">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <div>
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-purple-800 dark:from-white dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent leading-tight"
+              >
+                Your Challenge Journey
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-slate-600 dark:text-slate-300 mt-3 text-lg leading-relaxed"
+              >
+                Transform your goals into achievements with intelligent tracking and insights
+              </motion.p>
+            </div>
 
-        <div className="flex items-center space-x-3">
-          <button
-            onClick={() => setShowStats(!showStats)}
-            className="flex items-center space-x-2 px-4 py-2 bg-stone-100 hover:bg-stone-200 dark:bg-stone-700 dark:hover:bg-stone-600 rounded-lg transition-colors duration-200 text-stone-700 dark:text-stone-300"
-          >
-            <BarChart3 className="w-4 h-4" />
-            <span>{showStats ? "Hide Stats" : "Show Stats"}</span>
-          </button>
+            <div className="flex items-center space-x-4">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setShowStats(!showStats)}
+                className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                  showStats 
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg' 
+                    : 'bg-slate-100/80 hover:bg-slate-200/80 dark:bg-slate-700/80 dark:hover:bg-slate-600/80 text-slate-700 dark:text-slate-300'
+                }`}
+              >
+                <BarChart3 className="w-4 h-4" />
+                <span>{showStats ? "Hide Analytics" : "Show Analytics"}</span>
+              </motion.button>
+
+              <div className="flex items-center bg-slate-100/80 dark:bg-slate-700/80 rounded-xl p-1">
+                <button
+                  onClick={() => setViewMode('grid')}
+                  className={`p-2 rounded-lg transition-all duration-200 ${
+                    viewMode === 'grid' 
+                      ? 'bg-white dark:bg-slate-600 shadow-sm' 
+                      : 'hover:bg-slate-200/50 dark:hover:bg-slate-600/50'
+                  }`}
+                >
+                  <Grid3X3 className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                </button>
+                <button
+                  onClick={() => setViewMode('list')}
+                  className={`p-2 rounded-lg transition-all duration-200 ${
+                    viewMode === 'list' 
+                      ? 'bg-white dark:bg-slate-600 shadow-sm' 
+                      : 'hover:bg-slate-200/50 dark:hover:bg-slate-600/50'
+                  }`}
+                >
+                  <List className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -135,7 +179,7 @@ export function HomePage({ challenges, onViewChallenge }: HomePageProps) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
           >
             <StatisticsPanel statistics={statistics} />
           </motion.div>
@@ -149,19 +193,31 @@ export function HomePage({ challenges, onViewChallenge }: HomePageProps) {
         categories={categories}
       />
 
-      {/* Challenge Results */}
+      {/* Challenge Results Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-stone-900 dark:text-stone-100">
-          Challenges ({filteredChallenges.length})
-        </h2>
+        <div className="flex items-center space-x-3">
+          <div className="p-2 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg">
+            <Zap className="w-5 h-5 text-white" />
+          </div>
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+            Active Challenges
+          </h2>
+          <span className="px-3 py-1 bg-slate-100 dark:bg-slate-700 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-400">
+            {filteredChallenges.length}
+          </span>
+        </div>
       </div>
 
-      {/* Challenge Grid */}
+      {/* Challenge Grid/List */}
       <motion.div
         layout
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        className={
+          viewMode === 'grid' 
+            ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" 
+            : "space-y-6"
+        }
       >
-        <AnimatePresence>
+        <AnimatePresence mode="popLayout">
           {filteredChallenges.map((challenge) => (
             <ChallengeCard
               key={challenge.id}
@@ -177,16 +233,19 @@ export function HomePage({ challenges, onViewChallenge }: HomePageProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center py-12"
+          className="text-center py-20"
         >
-          <div className="text-6xl mb-4">🎯</div>
-          <h3 className="text-xl font-semibold text-stone-900 dark:text-stone-100 mb-2">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-full blur-3xl"></div>
+            <div className="relative text-8xl mb-6">🎯</div>
+          </div>
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3">
             No challenges found
           </h3>
-          <p className="text-stone-500 dark:text-stone-400 mb-6">
+          <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-md mx-auto leading-relaxed">
             {challenges.length === 0
-              ? "Get started by adding excel file for your first challenge!"
-              : "Try adjusting your filters to see more challenges."}
+              ? "Ready to start your journey? Add your first challenge and begin tracking your progress!"
+              : "Try adjusting your filters to discover more challenges that match your criteria."}
           </p>
         </motion.div>
       )}
