@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Search, Filter, SortAsc, SortDesc } from 'lucide-react';
-import { FilterState } from '../types/Challenge';
+import React from "react";
+import { motion } from "framer-motion";
+import { Search, Filter, SortAsc, SortDesc } from "lucide-react";
+import { FilterState } from "../types/Challenge";
 
 interface FilterControlsProps {
   filters: FilterState;
@@ -9,13 +9,17 @@ interface FilterControlsProps {
   categories: string[];
 }
 
-export function FilterControls({ filters, onFilterChange, categories }: FilterControlsProps) {
-  const statuses = ['all', 'active', 'pending', 'completed'];
+export function FilterControls({
+  filters,
+  onFilterChange,
+  categories,
+}: FilterControlsProps) {
+  const statuses = ["all", "active", "pending", "completed"];
   const sortOptions = [
-    { value: 'startDate', label: 'Start Date' },
-    { value: 'endDate', label: 'End Date' },
-    { value: 'status', label: 'Status' },
-    { value: 'title', label: 'Title' }
+    { value: "startDate", label: "Start Date" },
+    { value: "endDate", label: "End Date" },
+    { value: "status", label: "Status" },
+    { value: "title", label: "Title" },
   ];
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,9 +39,9 @@ export function FilterControls({ filters, onFilterChange, categories }: FilterCo
   };
 
   const toggleSortOrder = () => {
-    onFilterChange({ 
-      ...filters, 
-      sortOrder: filters.sortOrder === 'asc' ? 'desc' : 'asc' 
+    onFilterChange({
+      ...filters,
+      sortOrder: filters.sortOrder === "asc" ? "desc" : "asc",
     });
   };
 
@@ -74,9 +78,11 @@ export function FilterControls({ filters, onFilterChange, categories }: FilterCo
             onChange={handleStatusChange}
             className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100"
           >
-            {statuses.map(status => (
+            {statuses.map((status) => (
               <option key={status} value={status}>
-                {status === 'all' ? 'All Statuses' : status.charAt(0).toUpperCase() + status.slice(1)}
+                {status === "all"
+                  ? "All Statuses"
+                  : status.charAt(0).toUpperCase() + status.slice(1)}
               </option>
             ))}
           </select>
@@ -93,7 +99,7 @@ export function FilterControls({ filters, onFilterChange, categories }: FilterCo
             className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100"
           >
             <option value="all">All Categories</option>
-            {categories.map(category => (
+            {categories.map((category) => (
               <option key={category} value={category}>
                 {category}
               </option>
@@ -112,7 +118,7 @@ export function FilterControls({ filters, onFilterChange, categories }: FilterCo
               onChange={handleSortChange}
               className="flex-1 px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100"
             >
-              {sortOptions.map(option => (
+              {sortOptions.map((option) => (
                 <option key={option.value} value={option.value}>
                   {option.label}
                 </option>
@@ -122,7 +128,7 @@ export function FilterControls({ filters, onFilterChange, categories }: FilterCo
               onClick={toggleSortOrder}
               className="px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200 bg-white dark:bg-slate-700"
             >
-              {filters.sortOrder === 'asc' ? (
+              {filters.sortOrder === "asc" ? (
                 <SortAsc className="w-4 h-4 text-slate-600 dark:text-slate-400" />
               ) : (
                 <SortDesc className="w-4 h-4 text-slate-600 dark:text-slate-400" />

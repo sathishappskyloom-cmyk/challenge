@@ -1,50 +1,69 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { TrendingUp, Target, CheckCircle, Clock, Activity } from 'lucide-react';
-import { Statistics } from '../types/Challenge';
+import { motion } from "framer-motion";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+} from "recharts";
+import { TrendingUp, Target, CheckCircle, Activity } from "lucide-react";
+import { Statistics } from "../types/Challenge";
 
 interface StatisticsPanelProps {
   statistics: Statistics;
 }
 
-const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
+const COLORS = [
+  "#3B82F6",
+  "#10B981",
+  "#F59E0B",
+  "#EF4444",
+  "#8B5CF6",
+  "#EC4899",
+];
 
 export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
-  const categoryData = Object.entries(statistics.categoryCounts).map(([name, value]) => ({
-    name,
-    value
-  }));
+  const categoryData = Object.entries(statistics.categoryCounts).map(
+    ([name, value]) => ({
+      name,
+      value,
+    })
+  );
 
   const stats = [
     {
-      label: 'Total Challenges',
+      label: "Total Challenges",
       value: statistics.totalChallenges,
       icon: Target,
-      color: 'from-blue-500 to-blue-600',
-      textColor: 'text-blue-600 dark:text-blue-400'
+      color: "from-blue-500 to-blue-600",
+      textColor: "text-blue-600 dark:text-blue-400",
     },
     {
-      label: 'Active Challenges',
+      label: "Active Challenges",
       value: statistics.activeChallenges,
       icon: Activity,
-      color: 'from-green-500 to-green-600',
-      textColor: 'text-green-600 dark:text-green-400'
+      color: "from-green-500 to-green-600",
+      textColor: "text-green-600 dark:text-green-400",
     },
     {
-      label: 'Completed',
+      label: "Completed",
       value: statistics.completedChallenges,
       icon: CheckCircle,
-      color: 'from-purple-500 to-purple-600',
-      textColor: 'text-purple-600 dark:text-purple-400'
+      color: "from-purple-500 to-purple-600",
+      textColor: "text-purple-600 dark:text-purple-400",
     },
     {
-      label: 'Completion Rate',
+      label: "Completion Rate",
       value: `${statistics.completionRate.toFixed(1)}%`,
       icon: TrendingUp,
-      color: 'from-orange-500 to-orange-600',
-      textColor: 'text-orange-600 dark:text-orange-400'
-    }
+      color: "from-orange-500 to-orange-600",
+      textColor: "text-orange-600 dark:text-orange-400",
+    },
   ];
 
   return (
@@ -95,32 +114,38 @@ export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={categoryData}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
-                <XAxis 
-                  dataKey="name" 
+                <XAxis
+                  dataKey="name"
                   tick={{ fontSize: 12 }}
                   className="fill-slate-600 dark:fill-slate-400"
                 />
-                <YAxis 
+                <YAxis
                   tick={{ fontSize: 12 }}
                   className="fill-slate-600 dark:fill-slate-400"
                 />
-                <Tooltip 
+                <Tooltip
                   contentStyle={{
-                    backgroundColor: 'rgba(15, 23, 42, 0.9)',
-                    border: 'none',
-                    borderRadius: '8px',
-                    color: 'white'
+                    backgroundColor: "rgba(15, 23, 42, 0.9)",
+                    border: "none",
+                    borderRadius: "8px",
+                    color: "white",
                   }}
                 />
-                <Bar 
-                  dataKey="value" 
-                  fill="url(#colorGradient)" 
+                <Bar
+                  dataKey="value"
+                  fill="url(#colorGradient)"
                   radius={[4, 4, 0, 0]}
                 />
                 <defs>
-                  <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.9}/>
-                    <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0.9}/>
+                  <linearGradient
+                    id="colorGradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
+                    <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.9} />
+                    <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0.9} />
                   </linearGradient>
                 </defs>
               </BarChart>
@@ -143,13 +168,18 @@ export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  label={({ name, percent }) =>
+                    `${name} ${(percent * 100).toFixed(0)}%`
+                  }
                   outerRadius={80}
                   fill="#8884d8"
                   dataKey="value"
                 >
                   {categoryData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
                   ))}
                 </Pie>
                 <Tooltip />

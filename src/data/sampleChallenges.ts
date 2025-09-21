@@ -1,6 +1,6 @@
 import { Challenge } from "../types/Challenge";
 
-export const sampleChallenges: Challenge[] = [
+export const myChallenge: Challenge[] = [
   {
     id: "challenge-1",
     title: "Morning Routine Challenge",

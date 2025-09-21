@@ -1,14 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import {
-  ArrowLeft,
-  Download,
-  FileSpreadsheet,
-  FileText,
-  Edit3,
-  Save,
-  X,
-} from "lucide-react";
+import { ArrowLeft, FileSpreadsheet, FileText } from "lucide-react";
 import { Challenge } from "../types/Challenge";
 import { getIconComponent } from "../utils/iconMapper";
 import {
@@ -29,8 +21,6 @@ interface ChallengeViewerProps {
 
 export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
   const [excelData, setExcelData] = useState<any[][]>([]);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedData, setEditedData] = useState<any[][]>([]);
 
   const IconComponent = getIconComponent({ iconName: challenge.icon });
   const daysRemaining = getDaysRemaining(challenge.endDate);
@@ -41,40 +31,13 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
   );
 
   useEffect(() => {
-    // Load actual Excel file from assets
     loadExcelFromAssets(challenge.excelFile)
-      .then((data) => {
-        setExcelData(data);
-        setEditedData(data);
-      })
+      .then((data) => setExcelData(data))
       .catch((error) => {
         console.error("Failed to load Excel file:", error);
-        // Fallback to empty data
-        const fallbackData = [["No data available"]];
-        setExcelData(fallbackData);
-        setEditedData(fallbackData);
+        setExcelData([["No data available"]]);
       });
   }, [challenge]);
-
-  const handleCellEdit = (
-    rowIndex: number,
-    colIndex: number,
-    value: string
-  ) => {
-    const newData = [...editedData];
-    newData[rowIndex][colIndex] = value;
-    setEditedData(newData);
-  };
-
-  const handleSaveEdit = () => {
-    setExcelData(editedData);
-    setIsEditing(false);
-  };
-
-  const handleCancelEdit = () => {
-    setEditedData(excelData);
-    setIsEditing(false);
-  };
 
   const handleExportExcel = () => {
     exportToExcel(excelData, `${challenge.title}-data`);
@@ -115,58 +78,24 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
         </motion.button>
 
         <div className="flex items-center space-x-2">
-          {!isEditing ? (
-            <>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsEditing(true)}
-                className="flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
-              >
-                <Edit3 className="w-4 h-4" />
-                <span>Edit Data</span>
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleExportExcel}
-                className="flex items-center space-x-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200"
-              >
-                <FileSpreadsheet className="w-4 h-4" />
-                <span>Export Excel</span>
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleExportCSV}
-                className="flex items-center space-x-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors duration-200"
-              >
-                <FileText className="w-4 h-4" />
-                <span>Export CSV</span>
-              </motion.button>
-            </>
-          ) : (
-            <>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleSaveEdit}
-                className="flex items-center space-x-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200"
-              >
-                <Save className="w-4 h-4" />
-                <span>Save Changes</span>
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleCancelEdit}
-                className="flex items-center space-x-2 px-4 py-2 bg-slate-600 hover:bg-slate-700 text-white rounded-lg transition-colors duration-200"
-              >
-                <X className="w-4 h-4" />
-                <span>Cancel</span>
-              </motion.button>
-            </>
-          )}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleExportExcel}
+            className="flex items-center space-x-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200"
+          >
+            <FileSpreadsheet className="w-4 h-4" />
+            <span>Export Excel</span>
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleExportCSV}
+            className="flex items-center space-x-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors duration-200"
+          >
+            <FileText className="w-4 h-4" />
+            <span>Export CSV</span>
+          </motion.button>
         </div>
       </div>
 
@@ -276,11 +205,6 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
       <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
         <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-4">
           Challenge Data
-          {isEditing && (
-            <span className="ml-2 text-sm text-blue-600 dark:text-blue-400 font-normal">
-              (Editing Mode)
-            </span>
-          )}
         </h2>
 
         <div className="overflow-x-auto">
@@ -300,51 +224,34 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
               )}
             </thead>
             <tbody>
-              {(isEditing ? editedData : excelData)
-                .slice(1)
-                .map((row: any[], rowIndex: number) => (
-                  <motion.tr
-                    key={rowIndex}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: rowIndex * 0.05 }}
-                    className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors duration-150"
-                  >
-                    {row.map((cell: any, colIndex: number) => (
-                      <td
-                        key={colIndex}
-                        className="px-4 py-3 text-sm text-slate-900 dark:text-slate-100 border-b border-slate-200 dark:border-slate-600"
+              {excelData.slice(1).map((row: any[], rowIndex: number) => (
+                <motion.tr
+                  key={rowIndex}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: rowIndex * 0.05 }}
+                  className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors duration-150"
+                >
+                  {row.map((cell: any, colIndex: number) => (
+                    <td
+                      key={colIndex}
+                      className="px-4 py-3 text-sm text-slate-900 dark:text-slate-100 border-b border-slate-200 dark:border-slate-600"
+                    >
+                      <span
+                        className={
+                          cell === "✅"
+                            ? "text-green-500 text-lg"
+                            : cell === "⏳"
+                            ? "text-yellow-500 text-lg"
+                            : ""
+                        }
                       >
-                        {isEditing ? (
-                          <input
-                            type="text"
-                            value={cell || ""}
-                            onChange={(e) =>
-                              handleCellEdit(
-                                rowIndex + 1,
-                                colIndex,
-                                e.target.value
-                              )
-                            }
-                            className="w-full px-2 py-1 border border-slate-300 dark:border-slate-600 rounded bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                          />
-                        ) : (
-                          <span
-                            className={
-                              cell === "✅"
-                                ? "text-green-500 text-lg"
-                                : cell === "⏳"
-                                ? "text-yellow-500 text-lg"
-                                : ""
-                            }
-                          >
-                            {cell || "-"}
-                          </span>
-                        )}
-                      </td>
-                    ))}
-                  </motion.tr>
-                ))}
+                        {cell || "-"}
+                      </span>
+                    </td>
+                  ))}
+                </motion.tr>
+              ))}
             </tbody>
           </table>
         </div>

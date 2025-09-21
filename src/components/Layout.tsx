@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Moon, Sun, Monitor } from 'lucide-react';
-import { useDarkMode } from '../hooks/useDarkMode';
+import React from "react";
+import { motion } from "framer-motion";
+import { Moon, Sun } from "lucide-react";
+import { useDarkMode } from "../hooks/useDarkMode";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -26,7 +26,7 @@ export function Layout({ children }: LayoutProps) {
             >
               Challenge Site
             </motion.h1>
-            
+
             <motion.button
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}

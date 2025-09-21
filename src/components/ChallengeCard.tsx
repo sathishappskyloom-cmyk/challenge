@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { Eye, Calendar, Clock } from "lucide-react";
 import { Challenge } from "../types/Challenge";
