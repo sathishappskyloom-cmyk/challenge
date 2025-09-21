@@ -49,12 +49,12 @@ export function FilterControls({
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 mb-8"
+      className="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-6 mb-8"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         {/* Search */}
         <div className="lg:col-span-2">
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+          <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">
             <Search className="w-4 h-4 inline mr-1" />
             Search Challenges
           </label>
@@ -63,20 +63,20 @@ export function FilterControls({
             value={filters.search}
             onChange={handleSearchChange}
             placeholder="Search by title..."
-            className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100"
+            className="w-full px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-stone-700 text-stone-900 dark:text-stone-100"
           />
         </div>
 
         {/* Status Filter */}
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+          <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">
             <Filter className="w-4 h-4 inline mr-1" />
             Status
           </label>
           <select
             value={filters.status}
             onChange={handleStatusChange}
-            className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100"
+            className="w-full px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-stone-700 text-stone-900 dark:text-stone-100"
           >
             {statuses.map((status) => (
               <option key={status} value={status}>
@@ -90,13 +90,13 @@ export function FilterControls({
 
         {/* Category Filter */}
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+          <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">
             Category
           </label>
           <select
             value={filters.category}
             onChange={handleCategoryChange}
-            className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100"
+            className="w-full px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-stone-700 text-stone-900 dark:text-stone-100"
           >
             <option value="all">All Categories</option>
             {categories.map((category) => (
@@ -109,14 +109,14 @@ export function FilterControls({
 
         {/* Sort */}
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+          <label className="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2">
             Sort By
           </label>
           <div className="flex space-x-2">
             <select
               value={filters.sortBy}
               onChange={handleSortChange}
-              className="flex-1 px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100"
+              className="flex-1 px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-stone-700 text-stone-900 dark:text-stone-100"
             >
               {sortOptions.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -126,12 +126,12 @@ export function FilterControls({
             </select>
             <button
               onClick={toggleSortOrder}
-              className="px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors duration-200 bg-white dark:bg-slate-700"
+              className="px-3 py-2 border border-stone-300 dark:border-stone-600 rounded-lg hover:bg-stone-50 dark:hover:bg-stone-700 transition-colors duration-200 bg-white dark:bg-stone-700"
             >
               {filters.sortOrder === "asc" ? (
-                <SortAsc className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                <SortAsc className="w-4 h-4 text-stone-600 dark:text-stone-400" />
               ) : (
-                <SortDesc className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                <SortDesc className="w-4 h-4 text-stone-600 dark:text-stone-400" />
               )}
             </button>
           </div>

@@ -9,8 +9,6 @@ export interface Challenge {
   startDate: string;
   endDate: string;
   totalDays: number;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface ChallengeTemplate {

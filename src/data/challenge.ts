@@ -3,17 +3,16 @@ import { Challenge } from "../types/Challenge";
 export const myChallenge: Challenge[] = [
   {
     id: "challenge-1",
-    title: "Morning Routine Challenge",
-    description: "Establish a consistent morning routine for 30 days",
+    title: "Disciplined Lifestyle",
+    description:
+      "My top 10 lifestyle rules for building discipline, focus, and long-term success.",
     icon: "Sun",
     category: "Habits",
-    excelFile: "morning-routine.xlsx",
+    excelFile: "discplined-rules.xlsx",
     status: "active",
-    startDate: "2024-01-01",
-    endDate: "2024-01-30",
+    startDate: "2025-09-12",
+    endDate: "2025-10-12",
     totalDays: 30,
-    createdAt: "2024-01-01T00:00:00Z",
-    updatedAt: "2024-01-15T00:00:00Z",
   },
   {
     id: "challenge-2",
@@ -26,8 +25,6 @@ export const myChallenge: Challenge[] = [
     startDate: "2023-10-01",
     endDate: "2024-01-08",
     totalDays: 100,
-    createdAt: "2023-10-01T00:00:00Z",
-    updatedAt: "2024-01-08T00:00:00Z",
   },
   {
     id: "challenge-3",
@@ -40,8 +37,6 @@ export const myChallenge: Challenge[] = [
     startDate: "2024-02-01",
     endDate: "2024-03-01",
     totalDays: 30,
-    createdAt: "2024-01-20T00:00:00Z",
-    updatedAt: "2024-01-20T00:00:00Z",
   },
   {
     id: "challenge-4",
@@ -54,7 +49,5 @@ export const myChallenge: Challenge[] = [
     startDate: "2024-01-10",
     endDate: "2024-02-08",
     totalDays: 30,
-    createdAt: "2024-01-10T00:00:00Z",
-    updatedAt: "2024-01-25T00:00:00Z",
   },
 ];

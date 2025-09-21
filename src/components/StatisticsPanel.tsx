@@ -80,11 +80,11 @@ export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: index * 0.1 }}
-            className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6"
+            className="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-6"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
+                <p className="text-sm font-medium text-stone-600 dark:text-stone-400">
                   {stat.label}
                 </p>
                 <p className={`text-2xl font-bold ${stat.textColor} mt-1`}>
@@ -106,9 +106,9 @@ export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6"
+            className="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-6"
           >
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">
+            <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100 mb-4">
               Challenges by Category
             </h3>
             <ResponsiveContainer width="100%" height={250}>
@@ -117,11 +117,11 @@ export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
                 <XAxis
                   dataKey="name"
                   tick={{ fontSize: 12 }}
-                  className="fill-slate-600 dark:fill-slate-400"
+                  className="fill-stone-600 dark:fill-stone-400"
                 />
                 <YAxis
                   tick={{ fontSize: 12 }}
-                  className="fill-slate-600 dark:fill-slate-400"
+                  className="fill-stone-600 dark:fill-stone-400"
                 />
                 <Tooltip
                   contentStyle={{
@@ -156,9 +156,9 @@ export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6"
+            className="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-6"
           >
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">
+            <h3 className="text-lg font-semibold text-stone-900 dark:text-stone-100 mb-4">
               Category Distribution
             </h3>
             <ResponsiveContainer width="100%" height={250}>

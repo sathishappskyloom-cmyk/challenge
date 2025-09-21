@@ -50,13 +50,13 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
   const statusColors = {
     active: "bg-green-500",
     pending: "bg-yellow-500",
-    completed: "bg-slate-500",
+    completed: "bg-stone-500",
   };
 
   const statusTextColors = {
     active: "text-green-600 dark:text-green-400",
     pending: "text-yellow-600 dark:text-yellow-400",
-    completed: "text-slate-600 dark:text-slate-400",
+    completed: "text-stone-600 dark:text-stone-400",
   };
 
   return (
@@ -71,7 +71,7 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={onBack}
-          className="flex items-center space-x-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 rounded-lg transition-colors duration-200 text-slate-700 dark:text-slate-300"
+          className="flex items-center space-x-2 px-4 py-2 bg-stone-100 hover:bg-stone-200 dark:bg-stone-700 dark:hover:bg-stone-600 rounded-lg transition-colors duration-200 text-stone-700 dark:text-stone-300"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Challenges</span>
@@ -100,21 +100,21 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
       </div>
 
       {/* Challenge Info */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+      <div className="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-6">
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center space-x-4">
             <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white">
               <IconComponent className="w-8 h-8" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+              <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-100">
                 {challenge.title}
               </h1>
-              <p className="text-slate-600 dark:text-slate-400 mt-1">
+              <p className="text-stone-600 dark:text-stone-400 mt-1">
                 {challenge.description}
               </p>
               <div className="flex items-center space-x-4 mt-2">
-                <span className="text-sm text-slate-500 dark:text-slate-400">
+                <span className="text-sm text-stone-500 dark:text-stone-400">
                   Category:{" "}
                   <span className="font-medium">{challenge.category}</span>
                 </span>
@@ -144,7 +144,7 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
             <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
               {challenge.totalDays}
             </p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+            <p className="text-sm text-stone-500 dark:text-stone-400">
               Total Days
             </p>
           </div>
@@ -152,7 +152,7 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
             <p className="text-2xl font-bold text-green-600 dark:text-green-400">
               {Math.max(0, daysElapsed)}
             </p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+            <p className="text-sm text-stone-500 dark:text-stone-400">
               Days Elapsed
             </p>
           </div>
@@ -160,7 +160,7 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
             <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">
               {Math.max(0, daysRemaining)}
             </p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+            <p className="text-sm text-stone-500 dark:text-stone-400">
               Days Remaining
             </p>
           </div>
@@ -170,14 +170,14 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
         {challenge.status === "active" && (
           <div className="mb-6">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+              <span className="text-sm font-medium text-stone-700 dark:text-stone-300">
                 Progress
               </span>
-              <span className="text-sm text-slate-500 dark:text-slate-400">
+              <span className="text-sm text-stone-500 dark:text-stone-400">
                 {progressPercentage.toFixed(1)}%
               </span>
             </div>
-            <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+            <div className="w-full bg-stone-200 dark:bg-stone-700 rounded-full h-2">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progressPercentage}%` }}
@@ -189,7 +189,7 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
         )}
 
         {/* Date Info */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600 dark:text-slate-400">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-stone-600 dark:text-stone-400">
           <div>
             <span className="font-medium">Start Date:</span>{" "}
             {formatDate(challenge.startDate)}
@@ -202,8 +202,8 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
       </div>
 
       {/* Excel Data Table */}
-      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-4">
+      <div className="bg-white dark:bg-stone-800 rounded-xl shadow-sm border border-stone-200 dark:border-stone-700 p-6">
+        <h2 className="text-xl font-semibold text-stone-900 dark:text-stone-100 mb-4">
           Challenge Data
         </h2>
 
@@ -211,11 +211,11 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
           <table className="w-full">
             <thead>
               {excelData.length > 0 && (
-                <tr className="bg-slate-50 dark:bg-slate-700">
+                <tr className="bg-stone-50 dark:bg-stone-700">
                   {(excelData[0] || []).map((header: any, index: number) => (
                     <th
                       key={index}
-                      className="px-4 py-3 text-left text-sm font-medium text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-600"
+                      className="px-4 py-3 text-left text-sm font-medium text-stone-700 dark:text-stone-300 border-b border-stone-200 dark:border-stone-600"
                     >
                       {header}
                     </th>
@@ -230,12 +230,12 @@ export function ChallengeViewer({ challenge, onBack }: ChallengeViewerProps) {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: rowIndex * 0.05 }}
-                  className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors duration-150"
+                  className="hover:bg-stone-50 dark:hover:bg-stone-700/50 transition-colors duration-150"
                 >
                   {row.map((cell: any, colIndex: number) => (
                     <td
                       key={colIndex}
-                      className="px-4 py-3 text-sm text-slate-900 dark:text-slate-100 border-b border-slate-200 dark:border-slate-600"
+                      className="px-4 py-3 text-sm text-stone-900 dark:text-stone-100 border-b border-stone-200 dark:border-stone-600"
                     >
                       <span
                         className={

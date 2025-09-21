@@ -109,10 +109,10 @@ export function HomePage({ challenges, onViewChallenge }: HomePageProps) {
       {/* Header Actions */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">
+          <h1 className="text-3xl font-bold text-stone-900 dark:text-stone-100">
             My Challenges
           </h1>
-          <p className="text-slate-600 dark:text-slate-400 mt-1">
+          <p className="text-stone-600 dark:text-stone-400 mt-1">
             Track your progress and achieve your goals
           </p>
         </div>
@@ -120,7 +120,7 @@ export function HomePage({ challenges, onViewChallenge }: HomePageProps) {
         <div className="flex items-center space-x-3">
           <button
             onClick={() => setShowStats(!showStats)}
-            className="flex items-center space-x-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 rounded-lg transition-colors duration-200 text-slate-700 dark:text-slate-300"
+            className="flex items-center space-x-2 px-4 py-2 bg-stone-100 hover:bg-stone-200 dark:bg-stone-700 dark:hover:bg-stone-600 rounded-lg transition-colors duration-200 text-stone-700 dark:text-stone-300"
           >
             <BarChart3 className="w-4 h-4" />
             <span>{showStats ? "Hide Stats" : "Show Stats"}</span>
@@ -151,7 +151,7 @@ export function HomePage({ challenges, onViewChallenge }: HomePageProps) {
 
       {/* Challenge Results */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+        <h2 className="text-xl font-semibold text-stone-900 dark:text-stone-100">
           Challenges ({filteredChallenges.length})
         </h2>
       </div>
@@ -180,10 +180,10 @@ export function HomePage({ challenges, onViewChallenge }: HomePageProps) {
           className="text-center py-12"
         >
           <div className="text-6xl mb-4">🎯</div>
-          <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-2">
+          <h3 className="text-xl font-semibold text-stone-900 dark:text-stone-100 mb-2">
             No challenges found
           </h3>
-          <p className="text-slate-500 dark:text-slate-400 mb-6">
+          <p className="text-stone-500 dark:text-stone-400 mb-6">
             {challenges.length === 0
               ? "Get started by adding excel file for your first challenge!"
               : "Try adjusting your filters to see more challenges."}

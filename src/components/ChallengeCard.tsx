@@ -18,13 +18,13 @@ export function ChallengeCard({ challenge, onView }: ChallengeCardProps) {
     pending:
       "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
     completed:
-      "bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300",
+      "bg-stone-100 text-stone-800 dark:bg-stone-700 dark:text-stone-300",
   };
 
   const statusDots = {
     active: "bg-green-500",
     pending: "bg-yellow-500",
-    completed: "bg-slate-500",
+    completed: "bg-stone-500",
   };
 
   return (
@@ -34,7 +34,7 @@ export function ChallengeCard({ challenge, onView }: ChallengeCardProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       whileHover={{ y: -4, scale: 1.02 }}
-      className="bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 overflow-hidden"
+      className="bg-white dark:bg-stone-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-200 dark:border-stone-700 overflow-hidden"
     >
       <div className="p-6">
         <div className="flex items-start justify-between mb-4">
@@ -43,10 +43,10 @@ export function ChallengeCard({ challenge, onView }: ChallengeCardProps) {
               <IconComponent className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-lg">
+              <h3 className="font-semibold text-stone-900 dark:text-stone-100 text-lg">
                 {challenge.title}
               </h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+              <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
                 {challenge.category}
               </p>
             </div>
@@ -67,19 +67,19 @@ export function ChallengeCard({ challenge, onView }: ChallengeCardProps) {
           </div>
         </div>
 
-        <p className="text-slate-600 dark:text-slate-300 text-sm mb-4 line-clamp-2">
+        <p className="text-stone-600 dark:text-stone-300 text-sm mb-4 line-clamp-2">
           {challenge.description}
         </p>
 
         <div className="space-y-2 mb-6">
-          <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
+          <div className="flex items-center text-xs text-stone-500 dark:text-stone-400">
             <Calendar className="w-4 h-4 mr-2" />
             <span>
               {formatDate(challenge.startDate)} -{" "}
               {formatDate(challenge.endDate)}
             </span>
           </div>
-          <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
+          <div className="flex items-center text-xs text-stone-500 dark:text-stone-400">
             <Clock className="w-4 h-4 mr-2" />
             <span>{challenge.totalDays} days total</span>
             {challenge.status === "active" && daysRemaining > 0 && (
